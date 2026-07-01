@@ -1,0 +1,29 @@
+{
+  "name": "servicenow-impact-mcp-monorepo",
+  "version": "2.1.0",
+  "private": true,
+  "description": "ServiceNow Impact Analysis \u2014 Monorepo (Backend API + MCP Server + Dashboard)",
+  "license": "MIT",
+  "scripts": {
+    "setup": "npm install && cd shared && npm install && cd ../backend && npm install && cd ../mcp && npm install && cd ../frontend && npm install",
+    "dev": "concurrently -n api,ui -c blue,magenta \"npm run dev:api\" \"npm run dev:frontend\"",
+    "dev:api": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:mcp": "cd mcp && npm run dev",
+    "build": "cd shared && npm run build && cd ../backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build:all": "npm run build && npm run build:frontend",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:analyze": "cd backend && npm run test:analyze",
+    "start:api": "cd backend && npm start",
+    "start:mcp": "cd mcp && npm start",
+    "clean": "cd shared && npm run clean && cd ../backend && npm run clean"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "vitest": "^2.1.0",
+    "typescript": "^5.7.0",
+    "tsx": "^4.19.0"
+  }
+}

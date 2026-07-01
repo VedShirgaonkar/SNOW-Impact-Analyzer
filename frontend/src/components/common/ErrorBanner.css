@@ -1,0 +1,6 @@
+.error-banner { background: rgba(248,81,73,0.1); border: 1px solid rgba(248,81,73,0.3); border-radius: var(--radius-lg); padding: 16px; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.error-banner-content { display: flex; gap: 12px; align-items: flex-start; }
+.error-banner-icon { width: 24px; height: 24px; border-radius: 50%; background: var(--accent-red); color: white; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+.error-banner-text { display: flex; flex-direction: column; gap: 4px; }
+.error-banner-message { color: var(--text-primary); font-size: 0.9rem; } .error-banner-hint { color: var(--text-secondary); font-size: 0.8rem; } .error-banner-code { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-tertiary); }
+.error-banner-dismiss { background: none; border: 1px solid rgba(248,81,73,0.3); color: var(--accent-red); padding: 4px 12px; border-radius: var(--radius-sm); cursor: pointer; font-size: 0.8rem; font-family: var(--font-sans); } .error-banner-dismiss:hover { background: rgba(248,81,73,0.15); }

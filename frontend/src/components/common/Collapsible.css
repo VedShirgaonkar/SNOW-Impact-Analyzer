@@ -1,0 +1,8 @@
+.collapsible { border: 1px solid var(--border-primary); border-radius: var(--radius-lg); overflow: hidden; }
+.collapsible-subtle { border: none; border-radius: 0; border-bottom: 1px solid var(--border-secondary); }
+.collapsible-header { display: flex; align-items: center; gap: 8px; width: 100%; padding: 12px 16px; background: var(--bg-secondary); border: none; color: var(--text-primary); font-size: 0.9rem; font-weight: 600; font-family: var(--font-sans); cursor: pointer; text-align: left; }
+.collapsible-subtle .collapsible-header { background: transparent; padding: 10px 12px; font-weight: 500; }
+.collapsible-header:hover { background: var(--bg-tertiary); }
+.collapsible-chevron { font-size: 0.6rem; color: var(--text-tertiary); transition: transform 0.15s; width: 12px; } .collapsible-chevron.rotated { transform: rotate(90deg); }
+.collapsible-badge { margin-left: auto; font-size: 0.75rem; padding: 1px 8px; background: var(--bg-tertiary); border-radius: 10px; color: var(--text-secondary); }
+.collapsible-body { padding: 16px; background: var(--bg-primary); } .collapsible-subtle .collapsible-body { padding: 8px 12px 16px; }
