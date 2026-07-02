@@ -1,2 +1,32 @@
-import { useState } from "react"; import { Collapsible } from "../common/Collapsible.js"; import "./MarkdownPanel.css";
-export function MarkdownPanel({ markdown }: { markdown: string }) { const [copied, setCopied] = useState(false); async function handleCopy() { try { await navigator.clipboard.writeText(markdown); } catch { const t = document.createElement("textarea"); t.value = markdown; document.body.appendChild(t); t.select(); document.execCommand("copy"); document.body.removeChild(t); } setCopied(true); setTimeout(() => setCopied(false), 2000); } return (<Collapsible title="📝  Markdown Summary"><div className="markdown-panel"><div className="markdown-toolbar"><button className="copy-button" onClick={handleCopy}>{copied ? "✓ Copied!" : "📋 Copy"}</button></div><pre className="markdown-content">{markdown}</pre></div></Collapsible>); }
+import { useState } from "react";
+import { Collapsible } from "../common/Collapsible.js";
+import "./MarkdownPanel.css";
+export function MarkdownPanel({ markdown }: { markdown: string }) {
+  const [copied, setCopied] = useState(false);
+  async function handleCopy() {
+    try {
+      await navigator.clipboard.writeText(markdown);
+    } catch {
+      const t = document.createElement("textarea");
+      t.value = markdown;
+      document.body.appendChild(t);
+      t.select();
+      document.execCommand("copy");
+      document.body.removeChild(t);
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }
+  return (
+    <Collapsible title="📝  Markdown Summary">
+      <div className="markdown-panel">
+        <div className="markdown-toolbar">
+          <button className="copy-button" onClick={handleCopy}>
+            {copied ? "✓ Copied!" : "📋 Copy"}
+          </button>
+        </div>
+        <pre className="markdown-content">{markdown}</pre>
+      </div>
+    </Collapsible>
+  );
+}

@@ -1,1 +1,38 @@
-.markdown-panel { display: flex; flex-direction: column; gap: 8px; } .markdown-toolbar { display: flex; justify-content: flex-end; } .copy-button { padding: 6px 14px; background: var(--bg-tertiary); border: 1px solid var(--border-primary); border-radius: var(--radius-md); color: var(--text-secondary); font-family: var(--font-sans); font-size: 0.8rem; cursor: pointer; } .copy-button:hover { background: var(--bg-hover); color: var(--text-primary); } .markdown-content { font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.6; color: var(--text-secondary); background: var(--bg-secondary); border: 1px solid var(--border-primary); border-radius: var(--radius-md); padding: 16px; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; max-height: 500px; overflow-y: auto; }
+.markdown-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.markdown-toolbar {
+  display: flex;
+  justify-content: flex-end;
+}
+.copy-button {
+  padding: 6px 14px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.copy-button:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+.markdown-content {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 500px;
+  overflow-y: auto;
+}

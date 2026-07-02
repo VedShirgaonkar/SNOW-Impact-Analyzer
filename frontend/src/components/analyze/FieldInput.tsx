@@ -1,10 +1,96 @@
-import { useState, type FormEvent, type KeyboardEvent } from "react"; import "./FieldInput.css";
+import { useState, type FormEvent, type KeyboardEvent } from "react";
+import "./FieldInput.css";
 const FIELD_PATTERN = /^[a-zA-Z_][a-zA-Z0-9_]*\.[a-zA-Z_][a-zA-Z0-9_.]*$/;
-const EXAMPLES = ["incident.assignment_group","incident.priority","incident.state","change_request.assignment_group","cmdb_ci.name"];
-export function FieldInput({ onAnalyze, loading }: { onAnalyze: (field: string) => void; loading: boolean }) {
-  const [value, setValue] = useState(""); const [validationError, setValidationError] = useState<string | null>(null);
-  function validate(input: string): string | null { if (!input.trim()) return "Field reference is required"; if (!input.includes(".")) return "Use format: table.field"; if (!FIELD_PATTERN.test(input.trim())) return "Invalid format"; return null; }
-  function handleSubmit(e: FormEvent) { e.preventDefault(); const error = validate(value); if (error) { setValidationError(error); return; } setValidationError(null); onAnalyze(value.trim()); }
-  function handleKeyDown(e: KeyboardEvent<HTMLInputElement>) { if (e.key === "Enter") handleSubmit(e); }
-  return (<div className="field-input-section"><form className="field-input-form" onSubmit={handleSubmit}><div className="field-input-wrapper"><span className="field-input-prefix">field:</span><input type="text" className={`field-input ${validationError ? "field-input-error" : ""}`} value={value} onChange={(e) => { setValue(e.target.value); if (validationError) setValidationError(null); }} onKeyDown={handleKeyDown} placeholder="incident.assignment_group" disabled={loading} autoFocus spellCheck={false} /></div><button type="submit" className="analyze-button" disabled={loading || !value.trim()}>{loading ? (<><span className="button-spinner" />Analyzing...</>) : "Analyze"}</button></form>{validationError && <p className="field-validation-error">{validationError}</p>}<div className="field-examples"><span className="field-examples-label">Try:</span>{EXAMPLES.map((ex) => (<button key={ex} className="field-example-chip" onClick={() => { setValue(ex); setValidationError(null); onAnalyze(ex); }} disabled={loading}>{ex}</button>))}</div></div>);
+const EXAMPLES = [
+  "incident.assignment_group",
+  "incident.priority",
+  "incident.state",
+  "change_request.assignment_group",
+  "cmdb_ci.name",
+];
+export function FieldInput({
+  onAnalyze,
+  loading,
+}: {
+  onAnalyze: (field: string) => void;
+  loading: boolean;
+}) {
+  const [value, setValue] = useState("");
+  const [validationError, setValidationError] = useState<string | null>(null);
+  function validate(input: string): string | null {
+    if (!input.trim()) return "Field reference is required";
+    if (!input.includes(".")) return "Use format: table.field";
+    if (!FIELD_PATTERN.test(input.trim())) return "Invalid format";
+    return null;
+  }
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    const error = validate(value);
+    if (error) {
+      setValidationError(error);
+      return;
+    }
+    setValidationError(null);
+    onAnalyze(value.trim());
+  }
+  function handleKeyDown(e: KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter") handleSubmit(e);
+  }
+  return (
+    <div className="field-input-section">
+      <form className="field-input-form" onSubmit={handleSubmit}>
+        <div className="field-input-wrapper">
+          <span className="field-input-prefix">field:</span>
+          <input
+            type="text"
+            className={`field-input ${validationError ? "field-input-error" : ""}`}
+            value={value}
+            onChange={(e) => {
+              setValue(e.target.value);
+              if (validationError) setValidationError(null);
+            }}
+            onKeyDown={handleKeyDown}
+            placeholder="incident.assignment_group"
+            disabled={loading}
+            autoFocus
+            spellCheck={false}
+          />
+        </div>
+        <button
+          type="submit"
+          className="analyze-button"
+          disabled={loading || !value.trim()}
+        >
+          {loading ? (
+            <>
+              <span className="button-spinner" />
+              Analyzing...
+            </>
+          ) : (
+            "Analyze"
+          )}
+        </button>
+      </form>
+      {validationError && (
+        <p className="field-validation-error">{validationError}</p>
+      )}
+      <div className="field-examples">
+        <span className="field-examples-label">Try:</span>
+        {EXAMPLES.map((ex) => (
+          <button
+            key={ex}
+            className="field-example-chip"
+            onClick={() => {
+              setValue(ex);
+              setValidationError(null);
+              onAnalyze(ex);
+            }}
+            disabled={loading}
+          >
+            {ex}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
 }
